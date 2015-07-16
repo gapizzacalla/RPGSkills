@@ -1,7 +1,5 @@
 package rpgs.skill;
 
-import rpgs.RPGSkills;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

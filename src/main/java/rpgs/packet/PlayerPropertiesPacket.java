@@ -32,7 +32,7 @@ public class PlayerPropertiesPacket implements IMessage
         ByteBufUtils.writeTag(buf, this.playerData);
     }
 
-    public class Handler extends AbstractClientPacketHandler<PlayerPropertiesPacket>
+    public static class Handler extends AbstractClientPacketHandler<PlayerPropertiesPacket>
     {
         @Override
         public IMessage handleClient(EntityPlayer player, PlayerPropertiesPacket message, MessageContext context)

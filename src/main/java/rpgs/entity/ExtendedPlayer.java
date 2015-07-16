@@ -13,27 +13,40 @@ import rpgs.packet.PacketHandler;
 import rpgs.packet.PlayerPropertiesPacket;
 import rpgs.skill.Skill;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ExtendedPlayer implements IExtendedEntityProperties
 {
     public static final String PROP_NAME = "RPGS-EP";
     private final EntityPlayer player;
     /**Skills*/
-    public static int x = 0;
     private Skill attack;
-    private Skill health;
-    private Skill mining;
     private Skill strength;
-    private Skill agility;
+    private Skill defence;
+    private Skill ranged;
+    private Skill health;
+    private Skill crafting;
+    private Skill mining;
     private Skill smithing;
-    public static Skill[] skills = new Skill[4];
+    private Skill fishing;
+    private Skill woodcutting;
+    public static ArrayList<Skill> skills = new ArrayList<Skill>();
 
     public ExtendedPlayer(EntityPlayer player)
     {
         this.player = player;
         this.attack = new Skill("Attack");
-        this.health = new Skill("Health");
-        this.mining = new Skill("Mining");
         this.strength = new Skill("Strength");
+        this.defence = new Skill("Defence");
+        this.ranged = new Skill("Ranged");
+        this.health = new Skill("Health");
+        this.crafting = new Skill("Crafting");
+        this.mining = new Skill("Mining");
+        this.smithing = new Skill("Smithing");
+        this.fishing = new Skill("Fishing");
+        this.woodcutting = new Skill("Woodcutting");
         loadSkills();
     }
 
@@ -41,19 +54,33 @@ public class ExtendedPlayer implements IExtendedEntityProperties
     public void saveNBTData(NBTTagCompound compound)
     {
         NBTTagCompound properties = new NBTTagCompound();
-        properties.setIntArray("ATTACK", skills[0].get());
+        properties.setIntArray("ATTACK", skills.get(0).get());
+        properties.setIntArray("STRENGTH", skills.get(1).get());
+        properties.setIntArray("DEFENCE", skills.get(2).get());
+        properties.setIntArray("RANGED", skills.get(3).get());
+        properties.setIntArray("HEALTH", skills.get(4).get());
+        properties.setIntArray("CRAFTING", skills.get(5).get());
+        properties.setIntArray("MINING", skills.get(6).get());
+        properties.setIntArray("SMITHING", skills.get(7).get());
+        properties.setIntArray("FISHING", skills.get(8).get());
+        properties.setIntArray("WOODCUTTING", skills.get(9).get());
         compound.setTag(PROP_NAME, properties);
     }
 
     @Override
     public void loadNBTData(NBTTagCompound compound)
     {
-        NBTTagCompound properties = (NBTTagCompound)compound.getTag(PROP_NAME);
-        skills[0].set(properties.getIntArray("ATTACK"));
-        System.out.println("ATTACK XP: " + ExtendedPlayer.skills[0].getXP());
-        System.out.println("ATTACK NEEDED XP: " + ExtendedPlayer.skills[0].getNeededXP());
-        System.out.println("ATTACK TOTAL XP: " + ExtendedPlayer.skills[0].getTotalXp());
-        System.out.println("ATTACK LEVEL: " + ExtendedPlayer.skills[0].getLevel());
+        NBTTagCompound properties = (NBTTagCompound) compound.getTag(PROP_NAME);
+        ExtendedPlayer.skills.get(0).set(properties.getIntArray("ATTACK"));
+        ExtendedPlayer.skills.get(1).set(properties.getIntArray("STRENGTH"));
+        ExtendedPlayer.skills.get(2).set(properties.getIntArray("DEFENCE"));
+        ExtendedPlayer.skills.get(3).set(properties.getIntArray("RANGED"));
+        ExtendedPlayer.skills.get(4).set(properties.getIntArray("HEALTH"));
+        ExtendedPlayer.skills.get(5).set(properties.getIntArray("CRAFTING"));
+        ExtendedPlayer.skills.get(6).set(properties.getIntArray("MINING"));
+        ExtendedPlayer.skills.get(7).set(properties.getIntArray("SMITHING"));
+        ExtendedPlayer.skills.get(8).set(properties.getIntArray("FISHING"));
+        ExtendedPlayer.skills.get(9).set(properties.getIntArray("WOODCUTTING"));
     }
 
     @Override
@@ -68,18 +95,24 @@ public class ExtendedPlayer implements IExtendedEntityProperties
 
     private void loadSkills()
     {
-        skills[0] = attack;
-        skills[1] = health;
-        skills[2] = mining;
-        skills[3] = strength;
+        ExtendedPlayer.skills.add(attack);
+        ExtendedPlayer.skills.add(strength);
+        ExtendedPlayer.skills.add(defence);
+        ExtendedPlayer.skills.add(ranged);
+        ExtendedPlayer.skills.add(health);
+        ExtendedPlayer.skills.add(crafting);
+        ExtendedPlayer.skills.add(mining);
+        ExtendedPlayer.skills.add(smithing);
+        ExtendedPlayer.skills.add(fishing);
+        ExtendedPlayer.skills.add(woodcutting);
     }
 
     public void sync()
     {
-        if (!player.worldObj.isRemote)
+        if (!this.player.worldObj.isRemote)
         {
-            EntityPlayerMP player1 = (EntityPlayerMP) player;
-            PacketHandler.sendTo(new PlayerPropertiesPacket((EntityPlayer)player1), player1);
+            EntityPlayerMP playerMP = (EntityPlayerMP) player;
+            PacketHandler.sendTo(new PlayerPropertiesPacket((EntityPlayer)playerMP), playerMP);
         }
     }
 }
