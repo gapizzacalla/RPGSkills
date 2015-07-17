@@ -17,7 +17,6 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import rpgs.entity.ExtendedPlayer;
 import rpgs.proxy.CommonProxy;
@@ -83,7 +82,6 @@ public class EventsHandler
     {
         float amount = event.ammount;
         DamageSource source = event.source;
-        Entity entity = event.entity;
         if (source.getEntity() instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) source.getEntity();
