@@ -41,7 +41,7 @@ public class Skill
 
     public int getNeededXP()
     {
-        return this.neededXp;
+        return this.neededXp = this.totalXp - this.currentXp;
     }
 
     public int getTotalXp() { return this.totalXp; }
@@ -91,8 +91,33 @@ public class Skill
             case 1:
                 this.setTotalXp(100);
                 break;
-            default:
-                this.setTotalXp(100);
+            case 2:
+                this.setTotalXp(200);
+                break;
+            case 3:
+                this.setTotalXp(300);
+                break;
+            case 4:
+                this.setTotalXp(400);
+                break;
+            case 5:
+                this.setTotalXp(500);
+                break;
+            case 6:
+                this.setTotalXp(600);
+                break;
+            case 7:
+                this.setTotalXp(700);
+                break;
+            case 8:
+                this.setTotalXp(800);
+                break;
+            case 9:
+                this.setTotalXp(900);
+                break;
+            case 10:
+                this.setTotalXp(1000);
+                break;
         }
     }
 
@@ -108,15 +133,21 @@ public class Skill
 
     public boolean canLevel()
     {
-        if (this.getXP() == this.getNeededXP())
+        if (this.getXP() >= this.getNeededXP())
         {
             if (this.getLevel() != 10)
             {
                 this.setLevel(this.getLevel() + 1);
                 this.setXP(0);
+                this.setTotalXp();
                 return true;
             }
         }
         return false;
+    }
+
+    public void reset()
+    {
+        this.set(new int[]{0, 0, 100, 1});
     }
 }

@@ -1,6 +1,5 @@
 package rpgs.packet;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
