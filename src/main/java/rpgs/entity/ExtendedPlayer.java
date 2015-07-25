@@ -9,9 +9,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import org.lwjgl.Sys;
+import rpgs.RPGSkills;
 import rpgs.packet.PacketHandler;
 import rpgs.packet.PlayerPropertiesPacket;
-import rpgs.skill.Skill;
+import rpgs.skill.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,20 +20,20 @@ import java.util.Map;
 
 public class ExtendedPlayer implements IExtendedEntityProperties
 {
-    public static final String PROP_NAME = "RPGS-EP";
+    public static final String PROP_NAME = RPGSkills.MOD_ID + "-EP";
     private final EntityPlayer player;
     /**Skills*/
-    private Skill attack;
-    private Skill strength;
-    private Skill defence;
-    private Skill ranged;
-    private Skill health;
-    private Skill crafting;
-    private Skill mining;
-    private Skill smithing;
-    private Skill fishing;
-    private Skill woodcutting;
     public static ArrayList<Skill> skills = new ArrayList<Skill>();
+    private SkillAttack attack;
+    private SkillStrength strength;
+    private SkillDefence defence;
+    private SkillRanged ranged;
+    private SkillHealth health;
+    private SkillCrafting crafting;
+    private SkillMining mining;
+    private SkillSmithing smithing;
+    private SkillFishing fishing;
+    private SkillWoodcutting woodcutting;
 
     public static final String ATTACK = "attack";
     public static final String STRENGTH = "strength";
@@ -48,16 +49,16 @@ public class ExtendedPlayer implements IExtendedEntityProperties
     public ExtendedPlayer(EntityPlayer player)
     {
         this.player = player;
-        this.attack = new Skill("Attack");
-        this.strength = new Skill("Strength");
-        this.defence = new Skill("Defence");
-        this.ranged = new Skill("Ranged");
-        this.health = new Skill("Health");
-        this.crafting = new Skill("Crafting");
-        this.mining = new Skill("Mining");
-        this.smithing = new Skill("Smithing");
-        this.fishing = new Skill("Fishing");
-        this.woodcutting = new Skill("Woodcutting");
+        this.attack = new SkillAttack("Attack");
+        this.strength = new SkillStrength("Strength");
+        this.defence = new SkillDefence("Defence");
+        this.ranged = new SkillRanged("Ranged");
+        this.health = new SkillHealth("Health");
+        this.crafting = new SkillCrafting("Crafting");
+        this.mining = new SkillMining("Mining");
+        this.smithing = new SkillSmithing("Smithing");
+        this.fishing = new SkillFishing("Fishing");
+        this.woodcutting = new SkillWoodcutting("Woodcutting");
         loadSkills();
     }
 
