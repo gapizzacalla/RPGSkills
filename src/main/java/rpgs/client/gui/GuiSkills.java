@@ -1,9 +1,6 @@
 package rpgs.client.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.network.play.server.S1FPacketSetExperience;
-import net.minecraft.network.play.server.S3FPacketCustomPayload;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -27,8 +24,8 @@ public class GuiSkills extends GuiContainer
         int posX = (this.width - textureWidth) / 2;
         int posY = (this.height - textureHeight) / 2;
         int yDiff = guiTop - posY;
-        ExtendedPlayer props = ExtendedPlayer.get(this.mc.thePlayer);
-        if (props == null)
+        ExtendedPlayer ePlayer = ExtendedPlayer.get(this.mc.thePlayer);
+        if (ePlayer == null)
         {
             return;
         }
@@ -67,7 +64,7 @@ public class GuiSkills extends GuiContainer
             for (int j = 0; j < 5; j++)
             {
                 this.drawTexturedModalRect(posX + k, guiTop + l - yDiff, 0, 192, 74, 5);
-                double srcX = ((double) ExtendedPlayer.skills.get(j + m).getXP() / (double) ExtendedPlayer.skills.get(j + m).getTotalXp()) * 74;
+                double srcX = ((double) ePlayer.skills.get(j + m).getXP() / (double) ePlayer.skills.get(j + m).getTotalXp()) * 74;
                 this.drawTexturedModalRect(posX + k, guiTop + l - yDiff, 0, 197, (int) srcX, 5);
                 l += 33;
             }
@@ -83,6 +80,11 @@ public class GuiSkills extends GuiContainer
         int posX = (this.width - textureWidth) / 2;
         int posY = (this.height - textureHeight) / 2;
         int yDiff = guiTop - posY;
+        ExtendedPlayer ePlayer = ExtendedPlayer.get(this.mc.thePlayer);
+        if (ePlayer == null)
+        {
+            return;
+        }
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(GL11.GL_LIGHTING);
         fontRendererObj.drawString(StatCollector.translateToLocal("Skills"), 28, -3, 0xFFFFFF);
@@ -92,9 +94,9 @@ public class GuiSkills extends GuiContainer
             int k = 0;
             for (int j = 0; j < 5; j++)
             {
-                fontRendererObj.drawString(StatCollector.translateToLocal(ExtendedPlayer.skills.get(j + m).getName()), 30 + l, 28 + k - yDiff, 0xFFFFFF);
-                fontRendererObj.drawString(StatCollector.translateToLocal(ExtendedPlayer.skills.get(j + m).getXP() + "/" + ExtendedPlayer.skills.get(i).getTotalXp()), 30 + l, 28 + k, 0xFFFFFF);
-                fontRendererObj.drawString(StatCollector.translateToLocal(String.valueOf(ExtendedPlayer.skills.get(j + m).getLevel())), 70 + n, 28 + k, 0xFFFFFF);
+                fontRendererObj.drawString(StatCollector.translateToLocal(ePlayer.skills.get(j + m).getName()), 30 + l, 28 + k - yDiff, 0xFFFFFF);
+                fontRendererObj.drawString(StatCollector.translateToLocal(ePlayer.skills.get(j + m).getXP() + "/" + ePlayer.skills.get(i).getTotalXp()), 30 + l, 28 + k, 0xFFFFFF);
+                fontRendererObj.drawString(StatCollector.translateToLocal(String.valueOf(ePlayer.skills.get(j + m).getLevel())), 70 + n, 28 + k, 0xFFFFFF);
                 k += 33;
             }
             l += 79;

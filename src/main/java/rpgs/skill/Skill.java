@@ -1,5 +1,7 @@
 package rpgs.skill;
 
+import net.minecraft.entity.player.EntityPlayer;
+
 public class Skill
 {
     private String name;
@@ -140,6 +142,7 @@ public class Skill
                 this.setLevel(this.getLevel() + 1);
                 this.setXP(0);
                 this.setTotalXp();
+                this.setNeededXp();
                 return true;
             }
         }
@@ -150,4 +153,6 @@ public class Skill
     {
         this.set(new int[]{0, 0, 100, 1});
     }
+
+    public void setBuffs(int level, EntityPlayer player) {}
 }

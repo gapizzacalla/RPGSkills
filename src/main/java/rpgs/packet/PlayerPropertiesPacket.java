@@ -12,7 +12,9 @@ public class PlayerPropertiesPacket implements IMessage
 {
     private NBTTagCompound playerData;
 
-    public PlayerPropertiesPacket() {}
+    public PlayerPropertiesPacket()
+    {
+    }
 
     public PlayerPropertiesPacket(EntityPlayer player)
     {
