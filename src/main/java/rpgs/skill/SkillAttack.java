@@ -5,6 +5,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import rpgs.entity.ExtendedPlayer;
 
 public class SkillAttack extends Skill
@@ -17,10 +19,11 @@ public class SkillAttack extends Skill
 	public SkillAttack(String name)
 	{
 		super(name);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent
-	public void onLivingDeath(net.minecraftforge.event.entity.living.LivingDeathEvent event)
+	public void onLivingDeath(LivingDeathEvent event)
 	{
 		Entity entity = event.entity;
 		DamageSource source = event.source;

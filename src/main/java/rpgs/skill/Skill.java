@@ -1,6 +1,7 @@
 package rpgs.skill;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.MinecraftForge;
 
 public class Skill
 {

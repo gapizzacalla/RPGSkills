@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+@Deprecated /**Might scratch the idea*/
 public class SkillRegistry
 {
     /**

@@ -4,6 +4,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import rpgs.entity.ExtendedPlayer;
 
@@ -17,6 +18,7 @@ public class SkillHealth extends Skill
     public SkillHealth(String name)
     {
         super(name);
+		MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override

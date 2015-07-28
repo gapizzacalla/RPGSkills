@@ -1,5 +1,7 @@
 package rpgs.skill;
 
+import net.minecraftforge.common.MinecraftForge;
+
 public class SkillCrafting extends Skill
 {
     /**
@@ -10,5 +12,6 @@ public class SkillCrafting extends Skill
     public SkillCrafting(String name)
     {
         super(name);
+		MinecraftForge.EVENT_BUS.register(this);
     }
 }

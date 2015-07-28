@@ -2,11 +2,14 @@ package rpgs;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
+import rpgs.entity.ExtendedPlayer;
 import rpgs.event.EventsHandler;
 import rpgs.handler.GuiHandler;
 import rpgs.handler.KeyBindings;
@@ -28,7 +31,7 @@ public class RPGSkills
     public static final String SERVER_PROXY_CLASS = "rpgs.proxy.ServerProxy";
     public static final String GUI_FACTORY_CLASS = "rpgs.client.GuiFactory";
 
-    @Mod.Instance(MOD_ID)
+    @Instance(MOD_ID)
     public static RPGSkills instance;
 
     @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS, modId = MOD_ID)
@@ -39,7 +42,7 @@ public class RPGSkills
     /**
      * Put Network Handling, Mod Configurations, Register Blocks/Items
      */
-    @Mod.EventHandler
+    @EventHandler
     public void preInitialization(FMLPreInitializationEvent event)
     {
         new GuiHandler();
@@ -50,27 +53,17 @@ public class RPGSkills
     /**
      * Put GUI, TileEntity, Crafting, Events
      */
-    @Mod.EventHandler
+    @EventHandler
     public void initialization(FMLInitializationEvent event)
     {
         PacketHandler.registerPackets();
         ClientProxy.registerProxies();
         MinecraftForge.EVENT_BUS.register(new EventsHandler());
-        MinecraftForge.EVENT_BUS.register(SkillAttack.class);
-		MinecraftForge.EVENT_BUS.register(SkillCrafting.class);
-		MinecraftForge.EVENT_BUS.register(SkillDefence.class);
-		MinecraftForge.EVENT_BUS.register(SkillFishing.class);
-		MinecraftForge.EVENT_BUS.register(SkillHealth.class);
-		MinecraftForge.EVENT_BUS.register(SkillMining.class);
-		MinecraftForge.EVENT_BUS.register(SkillRanged.class);
-		MinecraftForge.EVENT_BUS.register(SkillSmithing.class);
-		MinecraftForge.EVENT_BUS.register(SkillStrength.class);
-		MinecraftForge.EVENT_BUS.register(SkillWoodcutting.class);
     }
 
     /**
      * Interact with other mods
      */
-    @Mod.EventHandler
+    @EventHandler
     public void postInitialization(FMLPostInitializationEvent event) { }
 }

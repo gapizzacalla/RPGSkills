@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockOre;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import rpgs.entity.ExtendedPlayer;
 
@@ -18,6 +19,7 @@ public class SkillMining extends Skill
 	public SkillMining(String name)
 	{
 		super(name);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent

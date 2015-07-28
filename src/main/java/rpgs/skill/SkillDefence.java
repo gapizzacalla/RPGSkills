@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import rpgs.entity.ExtendedPlayer;
 
@@ -18,6 +19,7 @@ public class SkillDefence extends Skill
     public SkillDefence(String name)
     {
         super(name);
+		MinecraftForge.EVENT_BUS.register(this);
     }
 
 	@SubscribeEvent
