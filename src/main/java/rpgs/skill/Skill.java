@@ -6,10 +6,10 @@ public class Skill
 {
     private String name;
     private int[] stats = new int[4];
-    int currentXp;
-    int totalXp;
-    int neededXp;
-    int level;
+    private int currentXp;
+    private int totalXp;
+    private int neededXp;
+    private int level;
 
     /**
      * Constructor for a new Skill
@@ -19,7 +19,7 @@ public class Skill
     {
         this.name = name;
         this.currentXp = 0;
-        setTotalXp();
+        this.setTotalXp();
         this.neededXp = this.totalXp - this.currentXp;
         this.level = 1;
     }
@@ -27,11 +27,11 @@ public class Skill
     /**Getters*/
     public int[] get()
     {
-        stats[0] = this.getXP();
-        stats[1] = this.getNeededXP();
-        stats[2] = this.getTotalXp();
-        stats[3] = this.getLevel();
-        return stats;
+        this.stats[0] = this.getXP();
+		this.stats[1] = this.getNeededXP();
+		this.stats[2] = this.getTotalXp();
+		this.stats[3] = this.getLevel();
+        return this.stats;
     }
 
     public String getName()
@@ -43,7 +43,8 @@ public class Skill
 
     public int getNeededXP()
     {
-        return this.neededXp = this.totalXp - this.currentXp;
+        this.setNeededXp();
+        return this.neededXp;
     }
 
     public int getTotalXp() { return this.totalXp; }
@@ -56,14 +57,14 @@ public class Skill
     /**Setters*/
     public void set(int[] array)
     {
-        stats[0] = array[0];
-        stats[1] = array[1];
-        stats[2] = array[2];
-        stats[3] = array[3];
-        this.setXP(stats[0]);
-        this.setNeededXp(stats[1]);
-        this.setTotalXp(stats[2]);
-        this.setLevel(stats[3]);
+		this.stats[0] = array[0];
+		this.stats[1] = array[1];
+		this.stats[2] = array[2];
+		this.stats[3] = array[3];
+        this.setXP(this.stats[0]);
+        this.setNeededXp(this.stats[1]);
+        this.setTotalXp(this.stats[2]);
+        this.setLevel(this.stats[3]);
     }
 
     public void setName(String name)
@@ -139,7 +140,7 @@ public class Skill
         {
             if (this.getLevel() != 10)
             {
-                this.setLevel(this.getLevel() + 1);
+                this.setLevel(this.level + 1);
                 this.setXP(0);
                 this.setTotalXp();
                 this.setNeededXp();

@@ -1,6 +1,10 @@
 package rpgs.skill;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
 import rpgs.entity.ExtendedPlayer;
 
 public class SkillHealth extends Skill
@@ -53,4 +57,25 @@ public class SkillHealth extends Skill
                 break;
         }
     }
+
+	@SubscribeEvent
+	public void onLivingHeal(LivingHealEvent event)
+	{
+		if (event.entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.entity;
+			ExtendedPlayer ePlayer = ExtendedPlayer.get(player);
+			if (!player.isPotionActive(Potion.heal) && !player.isPotionActive(Potion.regeneration))
+			{
+				this.setXP(this.getXP() + 1);
+				if (this.canLevel())
+				{
+					player.addChatComponentMessage(new ChatComponentText(this.getName() + " Level Up!"));
+					player.addChatComponentMessage(new ChatComponentText("Level " + this.getLevel()));
+					this.setBuffs(this.getLevel(), player);
+				}
+				ePlayer.sync();
+			}
+		}
+	}
 }

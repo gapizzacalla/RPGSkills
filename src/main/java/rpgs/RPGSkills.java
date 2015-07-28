@@ -15,7 +15,7 @@ import rpgs.packet.PacketHandler;
 import rpgs.proxy.ClientProxy;
 import rpgs.proxy.CommonProxy;
 import rpgs.proxy.IProxy;
-import rpgs.skill.SkillRegistry;
+import rpgs.skill.*;
 
 @Mod(modid = RPGSkills.MOD_ID, name = RPGSkills.MOD_NAME, version = RPGSkills.VERSION/*, guiFactory = RPGSkills.GUI_FACTORY_CLASS*/)
 public class RPGSkills
@@ -56,6 +56,16 @@ public class RPGSkills
         PacketHandler.registerPackets();
         ClientProxy.registerProxies();
         MinecraftForge.EVENT_BUS.register(new EventsHandler());
+        MinecraftForge.EVENT_BUS.register(SkillAttack.class);
+		MinecraftForge.EVENT_BUS.register(SkillCrafting.class);
+		MinecraftForge.EVENT_BUS.register(SkillDefence.class);
+		MinecraftForge.EVENT_BUS.register(SkillFishing.class);
+		MinecraftForge.EVENT_BUS.register(SkillHealth.class);
+		MinecraftForge.EVENT_BUS.register(SkillMining.class);
+		MinecraftForge.EVENT_BUS.register(SkillRanged.class);
+		MinecraftForge.EVENT_BUS.register(SkillSmithing.class);
+		MinecraftForge.EVENT_BUS.register(SkillStrength.class);
+		MinecraftForge.EVENT_BUS.register(SkillWoodcutting.class);
     }
 
     /**

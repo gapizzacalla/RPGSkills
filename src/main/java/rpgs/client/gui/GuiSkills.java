@@ -56,21 +56,22 @@ public class GuiSkills extends GuiContainer
         /**Woodcutting Icon*/
         this.drawTexturedModalRect(posX + 92, guiTop + 165 - yDiff, 176, 160, 16, 16);
         /**Experience*/
-        int k = 11;
-        int l = 49;
-        int m = 0;
+        int k = 11, l = 49, m = 0;
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 5; j++)
             {
                 this.drawTexturedModalRect(posX + k, guiTop + l - yDiff, 0, 192, 74, 5);
                 double srcX = ((double) ePlayer.skills.get(j + m).getXP() / (double) ePlayer.skills.get(j + m).getTotalXp()) * 74;
-                this.drawTexturedModalRect(posX + k, guiTop + l - yDiff, 0, 197, (int) srcX, 5);
+                if (srcX > 0.0)
+                {
+                    this.drawTexturedModalRect(posX + k, guiTop + l - yDiff, 0, 197, (int) srcX, 5);
+                }
                 l += 33;
             }
             k += 81;
-            l = 49;
-            m = 5;
+            l += 49;
+            m += 5;
         }
     }
 
@@ -95,7 +96,7 @@ public class GuiSkills extends GuiContainer
             for (int j = 0; j < 5; j++)
             {
                 fontRendererObj.drawString(StatCollector.translateToLocal(ePlayer.skills.get(j + m).getName()), 30 + l, 28 + k - yDiff, 0xFFFFFF);
-                fontRendererObj.drawString(StatCollector.translateToLocal(ePlayer.skills.get(j + m).getXP() + "/" + ePlayer.skills.get(i).getTotalXp()), 30 + l, 28 + k, 0xFFFFFF);
+                fontRendererObj.drawString(StatCollector.translateToLocal(ePlayer.skills.get(j + m).getXP() + "/" + ePlayer.skills.get(j + m).getTotalXp()), 30 + l, 28 + k, 0xFFFFFF);
                 fontRendererObj.drawString(StatCollector.translateToLocal(String.valueOf(ePlayer.skills.get(j + m).getLevel())), 70 + n, 28 + k, 0xFFFFFF);
                 k += 33;
             }
