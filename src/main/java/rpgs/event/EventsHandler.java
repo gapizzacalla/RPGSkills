@@ -24,7 +24,7 @@ public class EventsHandler
         }
         if (entity instanceof EntityPlayer && entity.getExtendedProperties(ExtendedPlayer.PROP_NAME) == null)
         {
-            entity.registerExtendedProperties(ExtendedPlayer.PROP_NAME, new ExtendedPlayer((EntityPlayer) event.entity));
+            entity.registerExtendedProperties(ExtendedPlayer.PROP_NAME, new ExtendedPlayer((EntityPlayer) entity));
         }
     }
 

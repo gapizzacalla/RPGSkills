@@ -28,7 +28,7 @@ public class SkillAttack extends Skill
 		Entity entity = event.entity;
 		DamageSource source = event.source;
 		World world = event.entity.worldObj;
-		if (source.getSourceOfDamage() instanceof EntityPlayer)
+		if (!world.isRemote && source.getSourceOfDamage() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) source.getEntity();
 			ExtendedPlayer ePlayer = ExtendedPlayer.get(player);

@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockOre;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import rpgs.entity.ExtendedPlayer;
@@ -27,7 +28,8 @@ public class SkillMining extends Skill
 	{
 		EntityPlayer player = event.getPlayer();
 		ExtendedPlayer ePlayer = ExtendedPlayer.get(player);
-		if (event.block instanceof BlockOre)
+		World world = player.worldObj;
+		if (!world.isRemote && event.block instanceof BlockOre)
 		{
 			this.setXP(this.getXP() + 1);
 			if (this.canLevel())

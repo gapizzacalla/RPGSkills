@@ -1,5 +1,7 @@
 package rpgs.client.gui;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -8,6 +10,7 @@ import rpgs.RPGSkills;
 import rpgs.entity.ExtendedPlayer;
 import rpgs.inventory.ContainerSkills;
 
+@SideOnly(Side.CLIENT)
 public class GuiSkills extends GuiContainer
 {
     private final int textureWidth = 176;

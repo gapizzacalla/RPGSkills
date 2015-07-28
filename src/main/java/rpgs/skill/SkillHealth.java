@@ -1,9 +1,11 @@
 package rpgs.skill;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import rpgs.entity.ExtendedPlayer;
@@ -63,11 +65,13 @@ public class SkillHealth extends Skill
 	@SubscribeEvent
 	public void onLivingHeal(LivingHealEvent event)
 	{
-		if (event.entity instanceof EntityPlayer)
+		Entity entity = event.entity;
+		if (entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.entity;
 			ExtendedPlayer ePlayer = ExtendedPlayer.get(player);
-			if (!player.isPotionActive(Potion.heal) && !player.isPotionActive(Potion.regeneration))
+			World world = player.worldObj;
+			if (!world.isRemote && !player.isPotionActive(Potion.heal) && !player.isPotionActive(Potion.regeneration))
 			{
 				this.setXP(this.getXP() + 1);
 				if (this.canLevel())
