@@ -2,6 +2,7 @@ package rpgs.skill;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
+import rpgs.entity.ExtendedPlayer;
 
 public class Skill
 {
@@ -20,9 +21,9 @@ public class Skill
     {
         this.name = name;
         this.currentXp = 0;
-        this.setTotalXp();
-        this.neededXp = this.totalXp - this.currentXp;
         this.level = 1;
+		this.setTotalXp();
+		this.neededXp = this.totalXp - this.currentXp;
     }
 
     /**Getters*/
