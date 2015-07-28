@@ -20,9 +20,9 @@ public class KeyHandler
         }
         if (Keyboard.isKeyDown(KeyBindings.reset.getKeyCode()))
         {
-            ExtendedPlayer player = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer);
-            player.resetSkills();
-            player.sync();
+            ExtendedPlayer eplayer = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer);
+            eplayer.resetSkills();
+            eplayer.sync();
         }
     }
 }
