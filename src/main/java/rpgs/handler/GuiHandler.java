@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import rpgs.RPGSkills;
 import rpgs.client.gui.GuiSkills;
 import rpgs.client.gui.GuiWarning;
+import rpgs.inventory.ContainerEmpty;
 import rpgs.inventory.ContainerSkills;
 
 public class GuiHandler implements IGuiHandler
@@ -26,7 +27,7 @@ public class GuiHandler implements IGuiHandler
             case 0:
                 return new ContainerSkills();
 			case 1:
-				return new ContainerSkills();
+				return new ContainerEmpty();
         }
         return null;
     }

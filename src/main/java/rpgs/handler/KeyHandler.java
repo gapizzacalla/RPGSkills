@@ -25,10 +25,7 @@ public class KeyHandler
         }
         if (Keyboard.isKeyDown(KeyBindings.reset.getKeyCode()))
         {
-            ExtendedPlayer eplayer = ExtendedPlayer.get(player);
-			player.openGui(RPGSkills.instance, 1, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
-            eplayer.resetSkills();
-            eplayer.syncWithServer();
-        }
+			PacketHandler.sendToServer(new OpenGuiPacket((byte) 1));
+		}
     }
 }
