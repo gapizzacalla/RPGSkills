@@ -16,12 +16,14 @@ import rpgs.packet.PacketHandler;
 @SideOnly(Side.CLIENT)
 public class GuiWarning extends GuiContainer
 {
-	private final int textureWidth = 200;
-	private final int textureHeight = 100;
+	private int textureWidth;
+	private int textureHeight;
 
 	public GuiWarning()
 	{
 		super(new ContainerEmpty());
+		this.textureWidth = 200;
+		this.textureHeight = 100;
 	}
 
 	@Override
