@@ -12,6 +12,5 @@ public class SkillSmithing extends Skill
     public SkillSmithing(String name)
     {
         super(name);
-		MinecraftForge.EVENT_BUS.register(this);
     }
 }

@@ -20,7 +20,6 @@ public class SkillWoodcutting extends Skill
     public SkillWoodcutting(String name)
     {
         super(name);
-		MinecraftForge.EVENT_BUS.register(this);
     }
 
 	@SubscribeEvent
@@ -37,7 +36,7 @@ public class SkillWoodcutting extends Skill
 				player.addChatComponentMessage(new ChatComponentText(this.getName() + " Level Up!"));
 				player.addChatComponentMessage(new ChatComponentText("Level " + this.getLevel()));
 			}
-			ePlayer.sync();
+			ePlayer.syncWithClient();
 		}
 	}
 }

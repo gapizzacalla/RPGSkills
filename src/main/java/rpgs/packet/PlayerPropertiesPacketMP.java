@@ -8,15 +8,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import rpgs.entity.ExtendedPlayer;
 
-public class PlayerPropertiesPacket implements IMessage
+public class PlayerPropertiesPacketMP implements IMessage
 {
 	private NBTTagCompound playerData;
 
-	public PlayerPropertiesPacket()
+	public PlayerPropertiesPacketMP()
 	{
 	}
 
-	public PlayerPropertiesPacket(EntityPlayer player)
+	public PlayerPropertiesPacketMP(EntityPlayer player)
 	{
 		this.playerData = new NBTTagCompound();
 		ExtendedPlayer.get(player).saveNBTData(this.playerData);
@@ -34,18 +34,18 @@ public class PlayerPropertiesPacket implements IMessage
 		ByteBufUtils.writeTag(buf, this.playerData);
 	}
 
-	public static class Handler extends AbstractServerPacketHandler<PlayerPropertiesPacket>
+	public static class Handler extends AbstractClientPacketHandler<PlayerPropertiesPacketMP>
 	{
 		@Override
-		public IMessage handleClient(EntityPlayer player, PlayerPropertiesPacket message, MessageContext context)
+		public IMessage handleClient(EntityPlayer player, PlayerPropertiesPacketMP message, MessageContext context)
 		{
+			ExtendedPlayer.get(player).loadNBTData(message.playerData);
 			return null;
 		}
 
 		@Override
-		public IMessage handleServer(EntityPlayer player, PlayerPropertiesPacket message, MessageContext context)
+		public IMessage handleServer(EntityPlayer player, PlayerPropertiesPacketMP message, MessageContext context)
 		{
-			ExtendedPlayer.get(player).loadNBTData(message.playerData);
 			return null;
 		}
 	}

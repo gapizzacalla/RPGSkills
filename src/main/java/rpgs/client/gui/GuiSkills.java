@@ -73,7 +73,7 @@ public class GuiSkills extends GuiContainer
                 l += 33;
             }
             k += 81;
-            l += 49;
+            l = 49;
             m += 5;
         }
     }

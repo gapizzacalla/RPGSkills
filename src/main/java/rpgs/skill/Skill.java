@@ -24,6 +24,7 @@ public class Skill
         this.level = 1;
 		this.setTotalXp();
 		this.neededXp = this.totalXp - this.currentXp;
+		MinecraftForge.EVENT_BUS.register(this);
     }
 
     /**Getters*/

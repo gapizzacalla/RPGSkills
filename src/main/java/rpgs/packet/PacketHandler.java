@@ -1,5 +1,6 @@
 package rpgs.packet;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister.Pack;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -15,7 +16,8 @@ public class PacketHandler
     public static void registerPackets()
     {
         PacketHandler.registerMessage(OpenGuiPacket.Handler.class, OpenGuiPacket.class, Side.SERVER);
-        PacketHandler.registerMessage(PlayerPropertiesPacket.Handler.class, PlayerPropertiesPacket.class, Side.CLIENT);
+        PacketHandler.registerMessage(PlayerPropertiesPacketMP.Handler.class, PlayerPropertiesPacketMP.class, Side.CLIENT);
+		PacketHandler.registerMessage(PlayerPropertiesPacket.Handler.class, PlayerPropertiesPacket.class, Side.SERVER);
     }
 
     private static void registerMessage(Class handler, Class message, Side side)

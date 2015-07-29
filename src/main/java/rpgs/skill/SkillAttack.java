@@ -19,7 +19,6 @@ public class SkillAttack extends Skill
 	public SkillAttack(String name)
 	{
 		super(name);
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent
@@ -38,7 +37,7 @@ public class SkillAttack extends Skill
 				player.addChatComponentMessage(new net.minecraft.util.ChatComponentText(this.getName() + " Level Up!"));
 				player.addChatComponentMessage(new net.minecraft.util.ChatComponentText("Level " + this.getLevel()));
 			}
-			ePlayer.sync();
+			ePlayer.syncWithClient();
 		}
 	}
 }

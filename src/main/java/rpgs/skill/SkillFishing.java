@@ -12,6 +12,5 @@ public class SkillFishing extends Skill
     public SkillFishing(String name)
     {
         super(name);
-		MinecraftForge.EVENT_BUS.register(this);
     }
 }

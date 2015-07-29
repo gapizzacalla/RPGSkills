@@ -20,7 +20,6 @@ public class SkillHealth extends Skill
     public SkillHealth(String name)
     {
         super(name);
-		MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
@@ -80,7 +79,7 @@ public class SkillHealth extends Skill
 					player.addChatComponentMessage(new ChatComponentText("Level " + this.getLevel()));
 					this.setBuffs(this.getLevel(), player);
 				}
-				ePlayer.sync();
+				ePlayer.syncWithClient();
 			}
 		}
 	}

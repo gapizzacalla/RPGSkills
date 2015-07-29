@@ -20,7 +20,6 @@ public class SkillRanged extends Skill
     public SkillRanged(String name)
     {
         super(name);
-		MinecraftForge.EVENT_BUS.register(this);
     }
 
 	@SubscribeEvent
@@ -42,7 +41,7 @@ public class SkillRanged extends Skill
 					player.addChatComponentMessage(new ChatComponentText(this.getName() + " Level Up!"));
 					player.addChatComponentMessage(new ChatComponentText("Level " + this.getLevel()));
 				}
-				ePlayer.sync();
+				ePlayer.syncWithClient();
 			}
 		}
 	}

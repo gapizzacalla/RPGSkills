@@ -1,5 +1,6 @@
 package rpgs.entity;
 
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,6 +10,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import rpgs.RPGSkills;
 import rpgs.packet.PacketHandler;
 import rpgs.packet.PlayerPropertiesPacket;
+import rpgs.packet.PlayerPropertiesPacketMP;
 import rpgs.skill.*;
 
 import java.util.ArrayList;
@@ -104,14 +106,22 @@ public class ExtendedPlayer implements IExtendedEntityProperties
         return (ExtendedPlayer)player.getExtendedProperties(PROP_NAME);
     }
 
-    public void sync()
+    public void syncWithClient()
     {
         if (!this.player.worldObj.isRemote)
         {
             EntityPlayerMP playerMP = (EntityPlayerMP) player;
-            PacketHandler.sendTo(new PlayerPropertiesPacket((EntityPlayer)playerMP), playerMP);
+            PacketHandler.sendTo(new PlayerPropertiesPacketMP((EntityPlayer)playerMP), playerMP);
         }
     }
+
+	public void syncWithServer()
+	{
+		if (this.player.worldObj.isRemote)
+		{
+			PacketHandler.sendToServer(new PlayerPropertiesPacket(this.player));
+		}
+	}
 
     public Skill get(String name)
     {

@@ -12,6 +12,5 @@ public class SkillCrafting extends Skill
     public SkillCrafting(String name)
     {
         super(name);
-		MinecraftForge.EVENT_BUS.register(this);
     }
 }

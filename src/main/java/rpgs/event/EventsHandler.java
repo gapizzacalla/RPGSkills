@@ -35,7 +35,7 @@ public class EventsHandler
 		Entity entity = event.entity;
         if (!world.isRemote && entity instanceof EntityPlayer)
 		{
-			ExtendedPlayer.get((EntityPlayer) entity).sync();
+			ExtendedPlayer.get((EntityPlayer) entity).syncWithClient();
 			NBTTagCompound playerData = CommonProxy.load(((EntityPlayer) entity).getDisplayName());
 			if (playerData != null)
 			{

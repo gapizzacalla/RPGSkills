@@ -12,9 +12,7 @@ public class OpenGuiPacket implements IMessage
 {
     private byte id;
 
-    public OpenGuiPacket()
-    {
-    }
+    public OpenGuiPacket() {}
 
     public OpenGuiPacket(byte id)
     {
