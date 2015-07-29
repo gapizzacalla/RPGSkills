@@ -22,6 +22,8 @@ public class GuiWarning extends GuiContainer
 	public GuiWarning()
 	{
 		super(new ContainerEmpty());
+		this.xSize = 200;
+		this.ySize = 100;
 		this.textureWidth = 200;
 		this.textureHeight = 100;
 	}
