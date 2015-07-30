@@ -32,11 +32,7 @@ public class SkillAttack extends Skill
 			EntityPlayer player = (EntityPlayer) source.getEntity();
 			ExtendedPlayer ePlayer = ExtendedPlayer.get(player);
 			this.setXP(this.getXP() + 1);
-			if (this.canLevel())
-			{
-				player.addChatComponentMessage(new net.minecraft.util.ChatComponentText(this.getName() + " Level Up!"));
-				player.addChatComponentMessage(new net.minecraft.util.ChatComponentText("Level " + this.getLevel()));
-			}
+			this.canLevel();
 			ePlayer.syncWithClient();
 		}
 	}

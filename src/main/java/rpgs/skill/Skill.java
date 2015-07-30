@@ -1,11 +1,14 @@
 package rpgs.skill;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.MinecraftForge;
 import rpgs.entity.ExtendedPlayer;
 
 public class Skill
 {
+	Minecraft mc;
     private String name;
     private int[] stats = new int[4];
     private int currentXp;
@@ -19,6 +22,7 @@ public class Skill
      */
     public Skill(String name)
     {
+		this.mc = Minecraft.getMinecraft();
         this.name = name;
         this.currentXp = 0;
         this.level = 1;
@@ -147,6 +151,8 @@ public class Skill
                 this.setXP(0);
                 this.setTotalXp();
                 this.setNeededXp();
+				this.mc.thePlayer.addChatComponentMessage(new ChatComponentText(this.getName() + " Level Up!"));
+				this.mc.thePlayer.addChatComponentMessage(new ChatComponentText("Level " + this.getLevel()));
                 return true;
             }
         }
