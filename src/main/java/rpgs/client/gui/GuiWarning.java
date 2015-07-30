@@ -32,7 +32,6 @@ public class GuiWarning extends GuiScreen
 	@Override
 	public void initGui()
 	{
-		super.initGui();
 		this.buttonList.clear();
 		this.buttonList.add(this.CANCEL);
 		this.buttonList.add(this.OK);
@@ -42,8 +41,6 @@ public class GuiWarning extends GuiScreen
 	public void drawDefaultBackground()
 	{
 		super.drawDefaultBackground();
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDisable(GL11.GL_LIGHTING);
 		this.mc.renderEngine.bindTexture(new ResourceLocation(RPGSkills.MOD_ID, "/textures/gui/container.png"));
 		this.drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
 	}
@@ -52,8 +49,8 @@ public class GuiWarning extends GuiScreen
 	public void drawScreen(int x, int y, float f)
 	{
 		this.drawDefaultBackground();
-		super.drawScreen(x, y, f);
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("Are you sure you want to reset your skills?"), 4, 20, 0x000000);
+		super.drawScreen(x, y, f);
 	}
 
 	@Override

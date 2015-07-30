@@ -12,10 +12,10 @@ import rpgs.RPGSkills;
 
 public class PacketHandler
 {
-    private static final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel(RPGSkills.MOD_ID);
     private static byte packetID = 0;
+	private static final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel(RPGSkills.MOD_ID);
 
-    public static void registerPackets()
+	public static void registerPackets()
     {
 		/**SERVER SIDE Packets*/
 		PacketHandler.registerMessage(ButtonPacket.Handler.class, ButtonPacket.class, Side.SERVER);
