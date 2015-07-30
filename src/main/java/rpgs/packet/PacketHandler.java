@@ -5,6 +5,8 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import rpgs.RPGSkills;
 
@@ -15,10 +17,12 @@ public class PacketHandler
 
     public static void registerPackets()
     {
-        PacketHandler.registerMessage(OpenGuiPacket.Handler.class, OpenGuiPacket.class, Side.SERVER);
-        PacketHandler.registerMessage(PlayerPropertiesPacketMP.Handler.class, PlayerPropertiesPacketMP.class, Side.CLIENT);
-		PacketHandler.registerMessage(PlayerPropertiesPacket.Handler.class, PlayerPropertiesPacket.class, Side.SERVER);
+		/**SERVER SIDE Packets*/
 		PacketHandler.registerMessage(ButtonPacket.Handler.class, ButtonPacket.class, Side.SERVER);
+		PacketHandler.registerMessage(PlayerPropertiesPacket.Handler.class, PlayerPropertiesPacket.class, Side.SERVER);
+		/**CLIENT SIDE Packets*/
+        PacketHandler.registerMessage(OpenGuiPacket.Handler.class, OpenGuiPacket.class, Side.CLIENT);
+        PacketHandler.registerMessage(PlayerPropertiesPacketMP.Handler.class, PlayerPropertiesPacketMP.class, Side.CLIENT);
     }
 
     private static void registerMessage(Class handler, Class message, Side side)

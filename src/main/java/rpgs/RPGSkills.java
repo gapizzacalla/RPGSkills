@@ -32,7 +32,7 @@ public class RPGSkills
     public static final String GUI_FACTORY_CLASS = "rpgs.client.GuiFactory";
 
     @Instance(MOD_ID)
-    public static RPGSkills instance;
+    private static RPGSkills instance;
 
     @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS, modId = MOD_ID)
     public static CommonProxy commonProxy;
@@ -66,4 +66,9 @@ public class RPGSkills
      */
     @EventHandler
     public void postInitialization(FMLPostInitializationEvent event) { }
+
+	public static RPGSkills instance()
+	{
+		return instance;
+	}
 }
