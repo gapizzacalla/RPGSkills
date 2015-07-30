@@ -25,7 +25,7 @@ public class Skill
 		this.mc = Minecraft.getMinecraft();
         this.name = name;
         this.currentXp = 0;
-        this.level = 1;
+        this.level = 0;
 		this.setTotalXp();
 		this.neededXp = this.totalXp - this.currentXp;
 		MinecraftForge.EVENT_BUS.register(this);
@@ -128,6 +128,8 @@ public class Skill
             case 10:
                 this.setTotalXp(1000);
                 break;
+			default:
+				this.setTotalXp(100);
         }
     }
 
