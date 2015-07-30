@@ -27,7 +27,7 @@ public class KeyHandler
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 		if (Keyboard.isKeyDown(KeyBindings.menu.getKeyCode()))
 		{
-			//PacketHandler.sendToServer(new OpenGuiPacket((byte) 0));
+			player.openGui(RPGSkills.instance(), 0, player.worldObj, 0, 0, 0);
 		}
 		if (Keyboard.isKeyDown(KeyBindings.reset.getKeyCode()))
 		{

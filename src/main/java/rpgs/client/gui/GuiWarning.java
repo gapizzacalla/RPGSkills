@@ -1,5 +1,6 @@
 package rpgs.client.gui;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -16,25 +17,20 @@ public class GuiWarning extends GuiScreen
 	private int ySize;
 	private int guiLeft;
 	private int guiTop;
-	private GuiButton CANCEL;
-	private GuiButton OK;
 
 	public GuiWarning()
 	{
 		this.xSize = 256;
 		this.ySize = 100;
-		this.guiLeft = (this.width - xSize) / 2;
-		this.guiTop = (this.height - ySize) / 2;
-		this.CANCEL = new GuiButton(0, this.guiLeft + 58, this.guiTop + 30, 50, 20, "CANCEL");
-		this.OK = new GuiButton(1, this.guiLeft + 4, this.guiTop + 30, 50, 20, "OK");
 	}
 
 	@Override
 	public void initGui()
 	{
-		this.buttonList.clear();
-		this.buttonList.add(this.CANCEL);
-		this.buttonList.add(this.OK);
+		this.guiLeft = (this.width - this.xSize) / 2;
+		this.guiTop = (this.height - this.ySize) / 2;
+		this.buttonList.add(new GuiButton(0, this.guiLeft + 142, this.guiTop + 60, 50, 20, "CANCEL"));
+		this.buttonList.add(new GuiButton(1, this.guiLeft + 64, this.guiTop + 60, 50, 20, "OK"));
 	}
 
 	@Override
@@ -42,14 +38,14 @@ public class GuiWarning extends GuiScreen
 	{
 		super.drawDefaultBackground();
 		this.mc.renderEngine.bindTexture(new ResourceLocation(RPGSkills.MOD_ID, "/textures/gui/container.png"));
-		this.drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 
 	@Override
 	public void drawScreen(int x, int y, float f)
 	{
 		this.drawDefaultBackground();
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("Are you sure you want to reset your skills?"), 4, 20, 0x000000);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("Are you sure you want to reset your skills?"), this.guiLeft + 15, this.guiTop + 20, 0x000000);
 		super.drawScreen(x, y, f);
 	}
 
@@ -57,5 +53,6 @@ public class GuiWarning extends GuiScreen
 	protected void actionPerformed(GuiButton button)
 	{
 		PacketHandler.sendToServer(new ButtonPacket((byte) button.id));
+		Minecraft.getMinecraft().displayGuiScreen((GuiScreen) null);
 	}
 }

@@ -1,5 +1,7 @@
 package rpgs.client.gui;
 
+import net.minecraft.client.gui.GuiScreen;
+
 /**
  * @author vswe
  */

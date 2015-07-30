@@ -3,6 +3,8 @@ package rpgs.packet;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.input.Keyboard;
 import rpgs.entity.ExtendedPlayer;
@@ -44,13 +46,8 @@ public class ButtonPacket implements IMessage
 				ExtendedPlayer eplayer = ExtendedPlayer.get(player);
 				eplayer.resetSkills();
 				eplayer.syncWithClient();
-				player.closeScreen();
 			}
-			else
-			{
-				player.closeScreen();
-			}
-			return null;
+			return message;
 		}
 	}
 }

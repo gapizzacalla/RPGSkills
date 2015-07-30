@@ -2,15 +2,11 @@ package rpgs.handler;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import rpgs.RPGSkills;
 import rpgs.client.gui.GuiSkills;
 import rpgs.client.gui.GuiWarning;
-import rpgs.client.gui.GuiWarning2;
-import rpgs.inventory.ContainerEmpty;
-import rpgs.inventory.ContainerSkills;
 
 public class GuiHandler implements IGuiHandler
 {
@@ -22,13 +18,6 @@ public class GuiHandler implements IGuiHandler
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        switch (ID)
-        {
-            case 0:
-                return new ContainerSkills();
-			case 1:
-				return null;
-        }
         return null;
     }
 
