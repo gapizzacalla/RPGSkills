@@ -1,6 +1,9 @@
 package rpgs.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -57,6 +60,21 @@ public class EventsHandler
 				NBTTagCompound playerData = new NBTTagCompound() ;
 				entity.getExtendedProperties(ExtendedPlayer.PROP_NAME).saveNBTData(playerData);
 				CommonProxy.save(((EntityPlayer) entity).getDisplayName(), playerData);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onServerTick(ServerTickEvent event)
+	{
+		int ticks = 0;
+		ticks++;
+		if (ticks % 20 == 0)
+		{
+			ExtendedPlayer ePlayer = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer);
+			for (int i = 0; i < ePlayer.skills.size(); i++)
+			{
+				ePlayer.skills.get(i).setBuffs(ePlayer.skills.get(i).getLevel(), Minecraft.getMinecraft().thePlayer);
 			}
 		}
 	}
