@@ -8,6 +8,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import org.lwjgl.input.Keyboard;
 import rpgs.RPGSkills;
+import rpgs.packet.OpenGuiPacket;
+import rpgs.packet.PacketHandler;
+import rpgs.proxy.CommonProxy;
 
 @SideOnly(Side.CLIENT)
 public class KeyHandler

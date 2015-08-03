@@ -21,6 +21,7 @@ public class PacketHandler
 		PacketHandler.registerMessage(ButtonPacket.Handler.class, ButtonPacket.class, Side.SERVER);
 		PacketHandler.registerMessage(PlayerPropertiesPacket.Handler.class, PlayerPropertiesPacket.class, Side.SERVER);
 		/**CLIENT SIDE Packets*/
+		PacketHandler.registerMessage(OpenGuiPacket.Handler.class, OpenGuiPacket.class, Side.CLIENT);
         PacketHandler.registerMessage(PlayerPropertiesPacketMP.Handler.class, PlayerPropertiesPacketMP.class, Side.CLIENT);
     }
 

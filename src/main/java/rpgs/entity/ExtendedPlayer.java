@@ -31,7 +31,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties
     private SkillSmithing smithing;
     private SkillFishing fishing;
     private SkillWoodcutting woodcutting;
-    private double hearts;
+    private float hearts;
 
     public static final String ATTACK = "attack";
     public static final String STRENGTH = "strength";
@@ -57,7 +57,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties
         this.smithing = new SkillSmithing("Smithing");
         this.fishing = new SkillFishing("Fishing");
         this.woodcutting = new SkillWoodcutting("Woodcutting");
-        this.hearts = 0.0D;
+        this.hearts = 0.0F;
         loadSkills();
     }
 
@@ -75,7 +75,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties
         properties.setIntArray("SMITHING", this.skills.get(7).get());
         properties.setIntArray("FISHING", this.skills.get(8).get());
         properties.setIntArray("WOODCUTTING", this.skills.get(9).get());
-        properties.setDouble("HEARTS", this.hearts);
+        properties.setFloat("HEARTS", this.hearts);
         compound.setTag(PROP_NAME, properties);
     }
 
@@ -93,7 +93,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties
         this.skills.get(7).set(properties.getIntArray("SMITHING"));
         this.skills.get(8).set(properties.getIntArray("FISHING"));
         this.skills.get(9).set(properties.getIntArray("WOODCUTTING"));
-        this.hearts = properties.getDouble("HEARTS");
+        this.hearts = properties.getFloat("HEARTS");
     }
 
     @Override
@@ -160,12 +160,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties
         }
     }
 
-    public void setMaxHealth(double value)
+    public void setMaxHealth(float value)
     {
         this.hearts = value;
     }
 
-    public double getHearts()
+    public float getHearts()
     {
         return this.hearts;
     }
